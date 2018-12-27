@@ -2,6 +2,7 @@
  * Utilizing SNMP
  */
 const snmp = require('net-snmp');
+const keys = require('./keys/radios');
 module.exports = (data, callback) => {
 
     console.log('Starting SNMP handling (UBNT)...');
@@ -11,10 +12,10 @@ module.exports = (data, callback) => {
     const NETWORK_SITES_WITH_COUNT = [];
     NETWORK_SITES.forEach(site => {
         let filtered_access_points = site.access_points.filter((val, i, arr) => {
-            if(val.subnet.includes('10.1.') 
-            || val.subnet.includes('10.130.') 
-            || val.subnet.includes('10.150.') 
-            || val.subnet.includes('65.91.199.')) {
+            if(val.subnet.includes(keys.one) 
+            || val.subnet.includes(keys.oneThirty) 
+            || val.subnet.includes(keys.oneFifty) 
+            || val.subnet.includes(keys.lte)) {
                 if(!val.description.toLowerCase().includes('ptp ') &&
                    !val.description.toLowerCase().includes(' ptp') &&
                    !val.description.toLowerCase().includes(' ptp ') &&
