@@ -8,7 +8,7 @@
     "build": "build --win",
     "ship": "build --win -p always"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/gteklee/tower-count",
   "keywords": [
     "Electron",
     "quick",
