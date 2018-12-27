@@ -43,7 +43,7 @@ module.exports = (data, callback) => {
         NETWORK_SITES_WITH_COUNT.push(site);
     });
     callback(NETWORK_SITES_WITH_COUNT);
-};
+};//
 
 function checkSubnet(subnet, callback) {
     if(subnet.includes('10.1.')) { // Ubiquiti
