@@ -1,0 +1,73 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.Hidden { display: none; }
+
+.Content { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 75%;
+}
+
+.Loading-Progress-Bar-Container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+    .Progress-Bar {
+        display: flex;
+        justify-content: center;
+        
+        margin-right: auto;
+        text-align: center;
+        width: 0;
+
+        border-radius: 10px;
+        background-color: lightskyblue;
+
+        transition: width .2s;
+    }
+
+.Console {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    width: 250px;
+    margin: 0 20px 20px 0;
+    background-color: lightskyblue;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+    input[type=button] { border-radius: 5px }
+    #btn-reload { margin-left: 10px }
+
+/** TABLE **/
+
+/* .Table-Title { text-decoration: underline; } */
+
+.Line-Break { border-bottom: 1px solid black; width: 90%; min-height: 50px; }
+
+table { margin: 0; width: 65%; }
+    th, td {  padding: 10px; }
+    tr:nth-child(even) { background-color: #F2F2F2; }
+    tr:not(th):hover { background-color: #DDD; }

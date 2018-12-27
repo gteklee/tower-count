@@ -1,1 +1,5 @@
 node_modules
+electron-builder.yml
+/dist
+/build
+/js/keys

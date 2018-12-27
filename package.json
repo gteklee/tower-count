@@ -1,10 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "tower-count",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Gtek's tower count tool - utilizes SNMP requests for data.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "build --win",
+    "ship": "build --win -p always"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -14,9 +16,17 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Henry Lee Barton III",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "^2.0.0",
+    "electron-builder": "^20.38.4",
+    "electron-reload": "^1.2.3"
+  },
+  "dependencies": {
+    "electron-updater": "^4.0.6",
+    "jquery": "^3.3.1",
+    "net-snmp": "^1.2.4",
+    "node-sonar-api": "^0.1.3"
   }
 }
