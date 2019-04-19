@@ -46,15 +46,15 @@ module.exports = (data, callback) => {
 };//
 
 function checkSubnet(subnet, callback) {
-    if(subnet.includes('10.1.')) { // Ubiquiti
+    if(subnet.includes(keys.one)) { // Ubiquiti
         makeSnmpRequestUbnt(subnet, count => {
             callback(count);
         });
-    } else if(subnet.includes('10.130.')) {
+    } else if(subnet.includes(keys.oneThirty)) {
         makeSnmpRequestCanopy(subnet, count => {
             callback(count);
         })
-    } else if(subnet.includes('10.150.')) {
+    } else if(subnet.includes(keys.oneFifty)) {
         makeSnmpRequestEpmp(subnet, count => {
             callback(count);
         })
