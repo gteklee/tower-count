@@ -62,6 +62,7 @@ body {
     #btn-reload { margin-left: 10px }
 
 #updates { margin-top: 15px; }
+#version { position: fixed; bottom: 0; }
 
 /** TABLE **/
 

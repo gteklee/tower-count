@@ -1,6 +1,6 @@
 {
   "name": "tower-count",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Gtek's tower count tool - utilizes SNMP requests for data.",
   "main": "main.js",
   "scripts": {
@@ -19,14 +19,14 @@
   "author": "Henry Lee Barton III",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^2.0.0",
-    "electron-builder": "^20.38.4",
-    "electron-reload": "^1.2.3"
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
+    "electron-reload": "^1.4.0"
   },
   "dependencies": {
     "electron-updater": "^4.0.6",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "net-snmp": "^1.2.4",
-    "node-sonar-api": "^0.1.3"
+    "node-sonar-api": "^0.2.7"
   }
 }

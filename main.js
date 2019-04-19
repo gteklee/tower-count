@@ -15,7 +15,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -46,24 +46,28 @@ app.on('ready', () => {
 // When the updater is checking for an update
 // let the browser window know.
 autoUpdater.on('checking-for-update', () => {
+  console.log('checking-for-update');
   sendMessageToWindow('Checking for update...');
 });
 
 // When update is available
 // let the browser window know.
 autoUpdater.on('update-available', (info) => {
+  console.log('update-available');
   sendMessageToWindow('Update available!');
 });
 
 // When no update is available
 // let the browser window know.
 autoUpdater.on('update-not-available', () => {
+  console.log('update-not-available');
   sendMessageToWindow('Up To Date!');
 });
 
 // When downloading a new update
 // let the browser window know.
 autoUpdater.on('download-progress', (proObj) => {
+  console.log('download-progress');
   let progress = 'Download Speed: ' + proObj.bytesPerSecond;
   progress += ' - Downloaded ' + proObj.percent + '%';
   sendMessageToWindow(progress);
@@ -72,12 +76,13 @@ autoUpdater.on('download-progress', (proObj) => {
 // When the update has been downloaded and is ready to be
 // installed, let the browser window know.
 autoUpdater.on('update-downloaded', (info) => {
+  console.log('update-downloaded');
   sendMessageToWindow('Updated downloaded! Quit to install...');
 });
 
-ipcMain.on('quitAndInstall', (event, arg) => {
-  autoUpdater.quitAndInstall();
-});
+// ipcMain.on('quitAndInstall', (event, arg) => {
+//   autoUpdater.quitAndInstall();
+// });
 
 
 // Quit when all windows are closed.
