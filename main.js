@@ -26,6 +26,15 @@ function createWindow () {
   })
 }
 
+/**
+ * Send status message to window.
+ * 
+ * @param {String} text 
+ */
+function sendMessageToWindow(text) {
+  mainWindow.webContents.send('message', text);
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -37,25 +46,33 @@ app.on('ready', () => {
 // When the updater is checking for an update
 // let the browser window know.
 autoUpdater.on('checking-for-update', () => {
-  mainWindow.webContents.send('checking-for-update');
+  sendMessageToWindow('Checking for update...');
 });
 
-// When downloading a new update
+// When update is available
 // let the browser window know.
-autoUpdater.on('download-progress', () => {
-  mainWindow.webContents.send('download-progress');
+autoUpdater.on('update-available', (info) => {
+  sendMessageToWindow('Update available!');
 });
 
 // When no update is available
 // let the browser window know.
 autoUpdater.on('update-not-available', () => {
-  mainWindow.webContents.send('update-not-available');
+  sendMessageToWindow('Up To Date!');
+});
+
+// When downloading a new update
+// let the browser window know.
+autoUpdater.on('download-progress', (proObj) => {
+  let progress = 'Download Speed: ' + proObj.bytesPerSecond;
+  progress += ' - Downloaded ' + proObj.percent + '%';
+  sendMessageToWindow(progress);
 });
 
 // When the update has been downloaded and is ready to be
 // installed, let the browser window know.
 autoUpdater.on('update-downloaded', (info) => {
-  mainWindow.webContents.send('update-downloaded');
+  sendMessageToWindow('Updated downloaded! Quit to install...');
 });
 
 ipcMain.on('quitAndInstall', (event, arg) => {

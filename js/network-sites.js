@@ -22,6 +22,10 @@ let SITE_OBJECTS = []; // Global array of the site objects
 
 
 async function getData(callback) {
+
+    // Update description
+    visual.updateProgressDescription('Getting Network Sites From Sonar...');
+
     let json_network_sites = await client.getAll.networkSites();
 
     NETWORK_SITES.push.apply(NETWORK_SITES, json_network_sites.data);
@@ -37,6 +41,9 @@ async function getData(callback) {
     }
 
     console.log(NETWORK_SITES);
+
+    // Update description
+    visual.updateProgressDescription('Getting IP Assignments Of Each Network Site...');
 
     // Get all IP Assignments of each network site
     // Create an object for each site containing Access Points

@@ -8,6 +8,10 @@ let CSV_FORMAT = 'Network Site,IP Address,Customer Count\n'; // CSV Format for c
 module.exports = obj => {
     
     const NETWORK_SITES = obj;
+
+    let _TOTAL = 0;         // Overall customer count
+    let _TOTAL_TOWERS = 0;  // Overall tower count
+    let _TOTAL_APS = 0;     // Overall access point count
     
     let SITE_TABLES = []; // Array of table elements for 
                           // each site
@@ -15,6 +19,7 @@ module.exports = obj => {
     let _visual_count = 0;
     for(const site of NETWORK_SITES) {
         _visual_count++;
+        _TOTAL_TOWERS++;
 
         let total = 0; // Total customer count for network site
         let csv_aps = ''; // CSV Format of access point data
@@ -27,6 +32,8 @@ module.exports = obj => {
                         '<th> Customer Count </th>'+
                     '</tr>';
         for(const access_point of site.access_points) {
+            _TOTAL_APS++;
+
             // Generate table of access points
             // console.log('Inside table generation:', access_point);
             // console.log(access_point.count);
@@ -57,6 +64,10 @@ module.exports = obj => {
                 csv_aps += access_point.description + ',' + access_point.subnet + ',-' + '\n';
             }
         }
+
+        // Update total customer count
+        _TOTAL += total;
+
         table += '</table>';
         table += '<p class="Table-Count-Total">' + total + '</p>'
         table += '<div class="Line-Break"></div>';
@@ -74,6 +85,12 @@ module.exports = obj => {
     }
 
     //console.log(CSV_FORMAT);
+    
+    // Prepend customer total
+    $('#content-container')
+        .prepend('<h2> Total Customer Count: ' + _TOTAL + ' </h2>'+
+                 '<h3> Total Tower Count: ' + _TOTAL_TOWERS + ' </h3>'+
+                 '<h3> Total AP Count: ' + _TOTAL_APS + ' </h3>');
 
     // Append generated table
     SITE_TABLES.forEach(table => {

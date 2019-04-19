@@ -1,6 +1,7 @@
 module.exports = {
     _loading: true, // Loading data
     _progress: 0, // Total loading progress
+    _desc: '---', // Current process
 
     /**
      * Updates the progress bar with current
@@ -30,6 +31,17 @@ module.exports = {
             $('#loading-container').removeClass('Loading').addClass('Hidden');
             $('#content-container').removeClass('Hidden').addClass('Content');
         }, 750);
+    },
+
+    /**
+     * Update the visual description.
+     * 
+     * @param {String} desc 
+     */
+    updateProgressDescription: function(desc) {
+        this.setDescription(desc);
+        // Update visual description
+        $('#progress-desc').text(desc);
     },
 
     // GETTERS / SETTERS
@@ -64,5 +76,21 @@ module.exports = {
      */
     isLoading: function() {
         return this._loading;
+    },
+
+    /**
+     * Returns current description of progress.
+     */
+    getDescription: function() {
+        return this._desc;
+    }, 
+
+    /**
+     * Set the description of progress.
+     * 
+     * @param {String} desc 
+     */
+    setDescription: function(desc) {
+        this._desc = desc;
     }
 };

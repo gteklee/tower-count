@@ -61,11 +61,16 @@ body {
     input[type=button] { border-radius: 5px }
     #btn-reload { margin-left: 10px }
 
+#updates { margin-top: 15px; }
+
 /** TABLE **/
 
 /* .Table-Title { text-decoration: underline; } */
 
 .Line-Break { border-bottom: 1px solid black; width: 90%; min-height: 50px; }
+
+h2 { text-decoration: underline; margin: 5px; }
+h3 { margin: 5px; }
 
 table { margin: 0; width: 65%; }
     th, td {  padding: 10px; }

@@ -5,8 +5,6 @@ const snmp = require('net-snmp');
 const keys = require('./keys/radios');
 module.exports = (data, callback) => {
 
-    console.log('Starting SNMP handling (UBNT)...');
-
     // Parse through each access point
     const NETWORK_SITES = data;
     const NETWORK_SITES_WITH_COUNT = [];
@@ -43,7 +41,7 @@ module.exports = (data, callback) => {
         NETWORK_SITES_WITH_COUNT.push(site);
     });
     callback(NETWORK_SITES_WITH_COUNT);
-};//
+};
 
 function checkSubnet(subnet, callback) {
     if(subnet.includes(keys.one)) { // Ubiquiti
@@ -62,7 +60,7 @@ function checkSubnet(subnet, callback) {
 }
 
 function makeSnmpRequestUbnt(subnet, callback) {
-    const session = snmp.createSession(subnet, 'GtekAP');
+    const session = snmp.createSession(subnet, keys.community);
     let oid = ['1.3.6.1.4.1.41112.1.4.5.1.15.1'];
     session.get(oid, (err, binds) => {
         if(err) {
@@ -88,7 +86,7 @@ function makeSnmpRequestCanopy(subnet, callback) {
     const options = {
         version: snmp.Version2c
     };
-    const session = snmp.createSession(subnet, 'GtekAP', options);
+    const session = snmp.createSession(subnet, keys.community, options);
     let oid = ['1.3.6.1.4.1.161.19.3.1.7.18.0'];
     session.get(oid, (err, binds) => {
         if(err) {
@@ -114,7 +112,7 @@ function makeSnmpRequestEpmp(subnet, callback) {
     const options = {
         version: snmp.Version2c
     };
-    const session = snmp.createSession(subnet, 'GtekAP', options);
+    const session = snmp.createSession(subnet, keys.community, options);
     let oid = ['1.3.6.1.4.1.17713.21.1.2.10.0'];
     session.get(oid, (err, binds) => {
         if(err) {
