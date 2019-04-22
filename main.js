@@ -80,8 +80,8 @@ autoUpdater.on('update-not-available', () => {
 // let the browser window know.
 autoUpdater.on('download-progress', proObj => {
   let progress = 'Downloading Update: ' + proObj.percent + '%';
-  log.info(proObj); // Log full download update
-  progress = 'Downloading Update: ' + proObj.percent.toFixed(2) + '%'; // Round to 2 decimals
+  log.info(progress); // Log full download update
+  progress = 'Downloading Update: ' + Number(proObj.percent).toFixed(2) + '%'; // Round to 2 decimals
   sendMessageToWindow(progress);
 });
 
