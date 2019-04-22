@@ -1,6 +1,12 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const {autoUpdater} = require('electron-updater');
+const log = require('electron-log');
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+
+log.info('Starting');
 //require('electron-reload')(__dirname);
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -15,7 +21,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -40,50 +46,50 @@ function sendMessageToWindow(text) {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   createWindow();
+  log.info('Check for updates and notify');
   autoUpdater.checkForUpdatesAndNotify();
+});
+
+autoUpdater.on('error', info => {
+  log.error(info);
+  sendMessageToWindow('Unable To Check For Updates!');
 });
 
 // When the updater is checking for an update
 // let the browser window know.
 autoUpdater.on('checking-for-update', () => {
-  console.log('checking-for-update');
+  log.info('Checking for updates...');
   sendMessageToWindow('Checking for update...');
 });
 
 // When update is available
 // let the browser window know.
-autoUpdater.on('update-available', (info) => {
-  console.log('update-available');
+autoUpdater.on('update-available', info => {
+  log.info('Update available!');
   sendMessageToWindow('Update available!');
 });
 
 // When no update is available
 // let the browser window know.
 autoUpdater.on('update-not-available', () => {
-  console.log('update-not-available');
+  log.info('Up to Date!');
   sendMessageToWindow('Up To Date!');
 });
 
 // When downloading a new update
 // let the browser window know.
-autoUpdater.on('download-progress', (proObj) => {
-  console.log('download-progress');
-  let progress = 'Download Speed: ' + proObj.bytesPerSecond;
-  progress += ' - Downloaded ' + proObj.percent + '%';
+autoUpdater.on('download-progress', proObj => {
+  let progress = 'Downloading Update: ' + proObj.percent + '%';
+  log.info(proObj);
   sendMessageToWindow(progress);
 });
 
 // When the update has been downloaded and is ready to be
 // installed, let the browser window know.
-autoUpdater.on('update-downloaded', (info) => {
-  console.log('update-downloaded');
+autoUpdater.on('update-downloaded', info => {
+  log.info('Update Downloaded!');
   sendMessageToWindow('Updated downloaded! Quit to install...');
 });
-
-// ipcMain.on('quitAndInstall', (event, arg) => {
-//   autoUpdater.quitAndInstall();
-// });
-
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -101,6 +107,3 @@ app.on('activate', function () {
     createWindow()
   }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

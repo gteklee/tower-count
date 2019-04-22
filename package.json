@@ -1,6 +1,6 @@
 {
   "name": "tower-count",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gtek's tower count tool - utilizes SNMP requests for data.",
   "main": "main.js",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "electron-updater": "^4.0.6",
+    "electron-log": "^3.0.5",
     "jquery": "^3.4.0",
     "net-snmp": "^1.2.4",
     "node-sonar-api": "^0.2.7"

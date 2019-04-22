@@ -15,7 +15,6 @@ const client = sonar.createClient({
  * Get all network sites from the 
  * Sonar instance.
  */
-let _promises = []; // Array of promises
 let NETWORK_SITES = []; // Global array of all network sites
 let SITE_OBJECTS = []; // Global array of the site objects
                        // containing APs
