@@ -61,9 +61,9 @@ body {
     input[type=button] { border-radius: 5px }
     #btn-reload { margin-left: 10px }
 
-    #content-container #updates { color: lightskyblue; position: fixed; bottom: 0; left: 0; margin-left: 20px; }
+    #content-container .updates { color: lightskyblue; position: fixed; bottom: 0; left: 0; margin-left: 20px; }
 
-#updates { margin-top: 15px; }
+.updates { margin-top: 15px; }
 #version { position: fixed; bottom: 0; }
 
 /** TABLE **/

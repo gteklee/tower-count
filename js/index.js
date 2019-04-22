@@ -14,8 +14,7 @@ require('./network-sites')(data => {
 });
 
 ipcRenderer.on('message', (event, text) => {
-    $('#updates').text(text);
-    $('#content-container #updates').text(text);
+    $('.updates').text(text);
 });
 
 // ipcRenderer.on('checking-for-update', (event, text) => {
